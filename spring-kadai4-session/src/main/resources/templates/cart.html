@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ショッピングカート</title>
+</head>
+<body>
+	
+	
+	<h1>ショッピングカート</h1>
+	<form action="/cart/add" method="post">
+		<input type="text" name="name" placeholder="商品名">
+		<input type="text" name="price" placeholder="価格">
+		<button>カートに追加</button>
+	</form>
+	
+	<br>
+	
+	<table border="1" th:if="${item != null}">
+		<tr>
+			<th>商品名</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each="item:${item}">
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+		</tr>
+	</table>
+	
+</body>
+</html>
