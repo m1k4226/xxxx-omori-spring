@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 HELP.md
 .gradle
 build/
@@ -36,7 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-=======
-/.metadata
-/Servers
->>>>>>> branch 'main' of git@github.com:m1k4226/xxxx-omori-spring.git
