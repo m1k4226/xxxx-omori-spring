@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>研修お問い合わせ</title>
+</head>
+<body>
+
+<h1 th:if="${genre == 'document'}">資料請求ありがとうございます</h1>
+<h1 th:if="${genre == 'estimate'}">見積り依頼ありがとうございます</h1>
+
+以下の内容にて受け付けました
+<table border="1">
+	<tr>
+		<th>言語</th>
+		<td>
+			<span th:each="lang:${langList}" th:text="${lang}+','"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>詳細内容</th>
+		<td th:text="${detail}"></td>
+	</tr>
+	<tr>
+		<th>実施予定日</th>
+		<td th:text="${dueDate}"></td>
+	</tr>
+	<tr>
+		<th>お名前</th>
+		<td th:text="${name}"></td>
+	</tr>
+	<tr>
+		<th>メールアドレス</th>
+		<td th:text="${email}"></td>
+	</tr>
+</table>
+<br>
+<div th:if="${genre == 'document'}">
+	<h2>資料はこちら</h2>
+	<ul>
+		<li th:each="lang:${langList}">
+			<a th:href="'/training/'+${lang}" th:text="${lang}"></a>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

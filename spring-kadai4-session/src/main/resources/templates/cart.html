@@ -21,7 +21,8 @@
 			<th>商品名</th>
 			<th>価格</th>
 		</tr>
-		<tr th:each="item:${item}">
+<!--		<tr th:each="item:${item}"> -->
+		<tr  th:each="item:${item}">
 			<td th:text="${item.name}"></td>
 			<td th:text="${item.price}"></td>
 		</tr>
