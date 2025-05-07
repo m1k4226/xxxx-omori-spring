@@ -1,0 +1,78 @@
+<!--
+** Step1：商品一覧画面を作りなさい（復習）
+** Step2：新規登録の処理を追加しなさい
+** Step3：一覧画面に更新ボタンを追加し、更新画面の表示をしてください
+** Step5：削除機能を追加してください
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+</head>
+<body>
+	<h1>商品一覧</h1>
+	<table border="1">
+		<tr>
+			<!-- Step1：商品一覧画面を作りなさい（復習） -->
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>値段</th>
+			
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		
+		<!-- Step1：商品一覧画面を作りなさい（復習） -->
+		<!-- Controllerから、itemsで渡されている -->
+		<tr th:each="item:${items}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+			
+			
+			<!-- Step3：一覧画面に更新ボタンを追加し、更新画面の表示をしてください -->			
+			<td>
+				<!-- th:action：Thymeleaf でフォームの送信先（action属性）を動的に指定するための属性。
+						URLにパラメータを含めて送るなら th:action を使うのがベスト。 -->
+				<!-- th:actionの場合は、@付けて動的URLに対応できるようにするべき！ -->
+				<!-- +${item.id}は、item.idの値を文字列に変換してURLに埋め込む -->
+				<form th:action="'/items/'+${item.id}+'/edit'" method="get">
+				<!-- *** form th:action="@{/items/{id}/edit(id=${item.id})}" method="get"でもOK -->
+				
+					<input type="submit" value="更新">
+				</form>
+			</td>
+			
+			<!-- Step5：削除機能を追加してください -->
+			<td>
+				<form th:action="@{/items/{id}/delete(id=${item.id})}" method="post">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+			
+		</tr>
+	</table>
+	
+	<!-- Step2：新規登録の処理を追加しなさい -->
+	<a href="items/add">新規登録</a>
+	
+</body>
+</html>
+
+<!--
+
+補足：
+URLの組み立て方の違い
+
+<form th:action="'/items/'+${item.id}+'/edit'" method="get">
+→ 文字列連結でURLを組み立てる書き方
+※ 初学者でも分かりやすいが、保守性が低い
+
+<form th:action="@{/items/{id}/delete(id=${item.id})}" method="post">
+→ Thymeleafの構文に従ったテンプレート式
+※ @{} 構文を使う方が、Spring Boot とThymeleafの連携において 安全で保守性が高い
+(実務でもよく使う、Thymeleaf推奨の書き方)
+
+-->

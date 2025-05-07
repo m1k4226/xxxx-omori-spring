@@ -1,0 +1,47 @@
+<!--
+** Step3：一覧画面に更新ボタンを追加し、更新画面の表示をしてください
+** Step4：更新画面にて、情報を変更し更新ボタンをクリックしたとき、データベースの内容を更新し、最新の情報で一覧画面を表示しなさい
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>商品更新</h1>
+	
+	<!-- th:actionは、URLを生成するための属性で、@{/items/{id}/edit(id=${item.id})}のように、URLのパスに変数を埋め込める -->
+	<!-- Controller(Get)からの、items(Model/Itemオブジェクト)をitemで表示（1つのみ表示） -->
+		<form th:each="item:${items}" th:action="@{/items/{id}/edit(id=${item.id})}" method="post">
+		<table border="1">
+			<tr>
+				<th>商品ID</th>
+				<td th:text="${item.id}"></td>
+			</tr>
+			<tr>
+				<th>商品カテゴリー</th>
+				<td>
+					<input type="text" name="categoryId" th:value="${item.categoryId}">
+				</td>
+			</tr>
+			<tr>
+				<th>商品名</th>
+				<td>
+					<input type="text" name="name" th:value="${item.name}">
+				</td>
+			</tr>
+			<tr>
+				<th>値段</th>
+				<td>
+					<input type="text" name="price" th:value="${item.price}">
+				</td>
+			</tr>
+		</table>
+		
+		<!-- form：post /items/{id}/edit -->
+		<input type="submit" value="更新">
+	</form>
+</body>
+</html>

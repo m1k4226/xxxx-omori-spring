@@ -1,0 +1,47 @@
+<!--
+** Step2：新規登録の処理を追加しなさい
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品登録</title>
+</head>
+
+<body>
+	<h1>商品登録</h1>
+	
+	<!-- post　/items/add　のControllerに投げる -->
+	<form action="/items/add" method="post">
+		<table border="1">
+			<tr>
+				<th>カテゴリーID</th>
+				<td>
+					<input type="text" name="categoryId">
+				</td>
+			</tr>
+			<tr>
+				<th>商品名</th>
+				<td>
+					<input type="text" name="name">
+				</td>
+			</tr>
+			<tr>
+				<th>値段</th>
+				<td>
+					<input type="text" name="price">
+				</td>
+			</tr>
+		</table>
+		
+		<!-- フォームの内容を送信するためのボタンを意味する。 -->
+		<!-- <form> タグに指定された action 属性のURLに対して、
+			method（GETまたはPOST）に従って、入力されたデータが送信されます。 -->
+		<input type="submit" value="登録">
+		
+	</form>
+
+
+</body>
+</html>
